@@ -21,6 +21,12 @@
                 "label": "{{{i18n.AutomationsCreateTeams}}}",
                 "logo": "img/automations_createteams.svg",
                 "name": "Create Teams"
+            },
+            {
+                "id": "automations_createkubernetescluster",
+                "label": "{{{i18n.AutomationsCreateKubernetesCluster}}}",
+                "logo": "img/automations_createkubernetescluster.svg",
+                "name": "Create Kubernetes Cluster"
             }
         ]
     },
@@ -28,22 +34,26 @@
         "en": {
             "AutomationsUpload": "New Automation",
             "AutomationsDelete": "Delete Automation",
-            "AutomationsCreateTeams": "Create teams"
+            "AutomationsCreateTeams": "Create teams",
+            "AutomationsCreateKubernetesCluster": "Create Kubernetes Cluster"
         },
         "hi": {
             "AutomationsUpload": "New Automation",
             "AutomationsDelete": "Delete Automation",
-            "AutomationsCreateTeams": "Create teams"
+            "AutomationsCreateTeams": "Create teams",
+            "AutomationsCreateKubernetesCluster": "Create Kubernetes Cluster"
         },
         "ja": {
             "AutomationsUpload": "New Automation",
             "AutomationsDelete": "Delete Automation",
-            "AutomationsCreateTeams": "Create teams"
+            "AutomationsCreateTeams": "Create teams",
+            "AutomationsCreateKubernetesCluster": "Create Kubernetes Cluster"
         },
         "zh": {
             "AutomationsUpload": "New Automation",
             "AutomationsDelete": "Delete Automation",
-            "AutomationsCreateTeams": "Create teams"
+            "AutomationsCreateTeams": "Create teams",
+            "AutomationsCreateKubernetesCluster": "Create Kubernetes Cluster"
         }
     }
 }
