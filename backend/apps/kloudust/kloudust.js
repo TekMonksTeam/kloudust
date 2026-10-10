@@ -173,6 +173,8 @@ function _setupKloudustEnvironment(asyncContextStorage, name, id, org, role, pro
     KLOUD_CONSTANTS.env.org = _ => asyncContextStorage.getStore()?.org;
     KLOUD_CONSTANTS.env.role = _ => asyncContextStorage.getStore()?.role;
     KLOUD_CONSTANTS.env.prj = _ => asyncContextStorage.getStore()?.project;
+    KLOUD_CONSTANTS.env.runAs = (overrides, fn) => roleman.isCloudAdminLoggedIn() && asyncContextStorage.run ?
+        asyncContextStorage.run({...asyncContextStorage.getStore(), ...overrides}, fn) : fn();
 }
 
 function _createConsoleHandler(consoleStreamHandler) {
