@@ -127,8 +127,7 @@ tbody tr:hover {
 }
 {{#enable_copy}}tbody td {position: relative; cursor: copy;}{{/enable_copy}}
 
-tbody.copy-enabled td:hover::after {
-    content: '{{{i18n.ClickToCopy}}}';
+tbody.copy-enabled td:hover::after, td[data-copied="true"]::after, [data-tooltip]:hover::after {
     position: absolute;
     top: -1.8em;
     left: 0;
@@ -142,20 +141,42 @@ tbody.copy-enabled td:hover::after {
     z-index: 5;
 }
 
+tbody.copy-enabled td:hover::after {
+    content: '{{{i18n.ClickToCopy}}}';
+}
+
 td[data-copied="true"]::after {
     content: '{{{i18n.Copied}}}';
-    position: absolute;
-    left: 0;
-    top: -1.8em;
-    background: #333;
-    color: #fff;
-    padding: 2px 6px;
-    font-size: 0.75em;
-    border-radius: 3px;
-    white-space: nowrap;
-    z-index: 5;
-    pointer-events: none;
-} 
+}
+
+/* Tooltip icon */
+div#row-data {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.info-icon {
+    width: .9em;
+    height: .9em;
+    margin-left: .7em;
+    cursor: pointer;
+}
+
+tbody tr:hover .info-icon {
+    filter: brightness(0) invert(1);
+}
+
+/* Tooltip text */
+[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    top: 100%;
+    white-space: pre;
+}
+
+tbody.copy-enabled td:has([data-tooltip]:hover)::after {
+    content: none;
+}
 </style>
 {{#style}}<style>{{{.}}}</style>{{/style}}
 
@@ -182,7 +203,18 @@ td[data-copied="true"]::after {
     {{#rows}}
     <tr {{#enable_copy}}onclick="if (!event.shiftKey) {monkshu_env.components['table-list'].rowClicked(event, '{{{rowdata_json_base64}}}')}"{{/enable_copy}}
         {{^enable_copy}}onclick="monkshu_env.components['table-list'].rowClicked(event, '{{{rowdata_json_base64}}}')"{{/enable_copy}}>
-    {{#.}}<td>{{.}}</td>{{/.}}
+    {{#.}}
+    <td>
+        <div id="row-data">
+            <span>{{value}}</span>
+            {{#tooltip}}
+            <span data-tooltip="{{text}}">
+                <img src="{{icon}}" class="info-icon" alt="">
+            </span>
+            {{/tooltip}}
+        </div>
+    </td>
+    {{/.}}
     </tr>
     {{/rows}}
     </tbody>

@@ -109,10 +109,12 @@ fi
 if [ "$REMOVE_DISK" == "true" ] || [ "$REMOVE_DISK" == "delete" ]; then
     testDiskNameProvided
     DISK_FILE=/kloudust/disks/"$NAME"_"$DISK_NAME".qcow2
-    if ! virsh detach-disk --domain $NAME $DISK_FILE --config --persistent; then 
-        exitFailed "Removal of disk $DISK_NAME from $NAME failed."
-    fi
-    echo "Disk: $DISK_NAME Detached Successfully."
+    if virsh dumpxml --inactive $NAME | grep -qF "'$DISK_FILE'"; then
+        if ! virsh detach-disk --domain $NAME $DISK_FILE --config --persistent; then
+            exitFailed "Removal of disk $DISK_NAME from $NAME failed."
+        fi
+        echo "Disk: $DISK_NAME Detached Successfully."
+    elif [ "$REMOVE_DISK" != "delete" ]; then exitFailed "Disk $DISK_NAME is not attached to $NAME."; fi
     if [ "$REMOVE_DISK" == "delete" ]; then
         if ! rm -rf $DISK_FILE; then exitFailed "Disk $DISK_NAME deletion failed for VM $NAME."; fi
         echo "Disk: $DISK_NAME Deleted Successfully."

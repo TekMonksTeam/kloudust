@@ -101,7 +101,7 @@ async function _runOnLoadJavascript(tabledef) {
     for (const key of load_js_result.keys) 
         tableObject.headers.push(await $$.libi18n.get(`${tabledef.i18nPrefix}_${key}`));
     for (const row of load_js_result.table) {
-        const rowData = []; for (const key of load_js_result.keys) rowData.push(row[key]||"");
+        const rowData = []; for (const key of load_js_result.keys) rowData.push({value: row[key]||"", tooltip: row.tooltips?.[key]});
         rowData.rowdata_json_base64 = $$.libutil.stringToBase64(JSON.stringify(row)); tableObject.rows.push(rowData);
     }
     return tableObject;
