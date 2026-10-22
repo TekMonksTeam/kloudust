@@ -1,7 +1,7 @@
 /** 
  * deleteVMVnet.js - Deletes the VM from the given Vnet. The Vnet must exist.
  * 
- * Params - 0 - VM Name, 2 - Vnet name
+ * Params - 0 - VM Name, 1 - Vnet name
  * 
  * (C) 2025 TekMonks. All rights reserved.
  * License: See enclosed LICENSE file.

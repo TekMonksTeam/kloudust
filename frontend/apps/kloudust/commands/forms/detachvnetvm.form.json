@@ -1,0 +1,67 @@
+{
+"id": "detachvnetvm",
+"command": "deleteVMVnet",
+"type": "kloudust_cmdline",
+"kloudust_cmdline_params": ["vm_name", "vnet_name"],
+
+"title": "{{{i18n.DetachVNetTitle}}}",
+
+"i18n": {
+    "en": {
+        "DetachVNetTitle": "Detach virtual network",
+        "DetachVNetDescription": "Detach a virtual network from this virtual machine.",
+        "VMName": "Virtual machine name",
+        "VNetName": "Virtual network",
+        "DetachVNetSubmitLabel": "Detach",
+        "FieldValidationErrorGeneric": "Validation error"
+    },
+    "hi": {
+        "DetachVNetTitle": "Detach virtual network",
+        "DetachVNetDescription": "Detach a virtual network from this virtual machine.",
+        "VMName": "Virtual machine name",
+        "VNetName": "Virtual network",
+        "DetachVNetSubmitLabel": "Detach",
+        "FieldValidationErrorGeneric": "Validation error"
+    },
+    "ja": {
+        "DetachVNetTitle": "Detach virtual network",
+        "DetachVNetDescription": "Detach a virtual network from this virtual machine.",
+        "VMName": "Virtual machine name",
+        "VNetName": "Virtual network",
+        "DetachVNetSubmitLabel": "Detach",
+        "FieldValidationErrorGeneric": "Validation error"
+    },
+    "zh": {
+        "DetachVNetTitle": "Detach virtual network",
+        "DetachVNetDescription": "Detach a virtual network from this virtual machine.",
+        "VMName": "Virtual machine name",
+        "VNetName": "Virtual network",
+        "DetachVNetSubmitLabel": "Detach",
+        "FieldValidationErrorGeneric": "Validation error"
+    }
+},
+
+"form": {
+    "description": "{{{i18n.DetachVNetDescription}}}",
+    "required_label": "{{{i18n.Required}}}",
+    "required_fields": [
+        {"id": "vm_name", "type": "text", "placeholder": "{{{i18n.VMName}}}", "required": true,
+            "pattern": "[0-9a-zA-Z]+", "validation_error": "{{{i18n.FieldValidationErrorGeneric}}}",
+            "value": "{{{APP_CONSTANTS.ENV._vms_form_data.name_raw}}}",
+            "readonly": "{{#APP_CONSTANTS.ENV._vms_form_data.name_raw}}true{{/APP_CONSTANTS.ENV._vms_form_data.name_raw}}"},
+        {"id": "vnet_name", "multioption": true, "type": "select", "label": "{{{i18n.VNetName}}}", "required": true, "options": []}
+    ],
+
+    "load_javascript": [
+        "const { cmdmanager } = await import(`${APP_CONSTANTS.LIB_PATH}/cmdmanager.mjs`);",
+        "const form = arguments[0] || {};",
+        "const vnetResult = await cmdmanager.kdcmd('getVMVnets', ['vm_name'], {vm_name: form.required_fields[0].value}, $$.libsession.get(APP_CONSTANTS.ACTIVE_PROJECT), true);",
+        "const vnetSelect = form.required_fields[1];",
+        "if (vnetResult.result && vnetResult.vnets.length) for (const vnet of vnetResult.vnets) vnetSelect.options.push({value: vnet, label: vnet});",
+        "else { vnetSelect.options.push({value: '', label: 'No Vnets Found'}); vnetSelect.disabled = true; }",
+        "return form;"
+    ],
+
+    "submitlabel": "{{{i18n.DetachVNetSubmitLabel}}}"
+}
+}
