@@ -21,6 +21,12 @@
                 "label": "{{{i18n.AutomationsCreateTeams}}}",
                 "logo": "img/automations_createteams.svg",
                 "name": "Create Teams"
+            },
+            {
+                "id": "automations_createdns",
+                "label": "{{{i18n.AutomationsCreateDNS}}}",
+                "logo": "img/automations_createdns.svg",
+                "name": "Create DNS"
             }
         ]
     },
@@ -28,22 +34,26 @@
         "en": {
             "AutomationsUpload": "New Automation",
             "AutomationsDelete": "Delete Automation",
-            "AutomationsCreateTeams": "Create teams"
+            "AutomationsCreateTeams": "Create teams",
+            "AutomationsCreateDNS": "Create DNS server"
         },
         "hi": {
             "AutomationsUpload": "New Automation",
             "AutomationsDelete": "Delete Automation",
-            "AutomationsCreateTeams": "Create teams"
+            "AutomationsCreateTeams": "Create teams",
+            "AutomationsCreateDNS": "Create DNS server"
         },
         "ja": {
             "AutomationsUpload": "New Automation",
             "AutomationsDelete": "Delete Automation",
-            "AutomationsCreateTeams": "Create teams"
+            "AutomationsCreateTeams": "Create teams",
+            "AutomationsCreateDNS": "Create DNS server"
         },
         "zh": {
             "AutomationsUpload": "New Automation",
             "AutomationsDelete": "Delete Automation",
-            "AutomationsCreateTeams": "Create teams"
+            "AutomationsCreateTeams": "Create teams",
+            "AutomationsCreateDNS": "Create DNS server"
         }
     }
 }

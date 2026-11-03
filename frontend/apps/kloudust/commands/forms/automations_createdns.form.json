@@ -1,0 +1,184 @@
+{
+    "id": "automations_createdns",
+    "command": "automations_createdns",
+    "type": "automation_cmdline",
+    "kloudust_cmdline_params": [
+        "name",
+        "size",
+        "image",
+        "tarurl",
+        "dockerimage",
+        "adminpass",
+        "assignpublicip"
+    ],
+    "title": "{{{i18n.AutomationsCreateDNSTitle}}}",
+    "i18n": {
+        "en": {
+            "AutomationsCreateDNSTitle": "Create DNS server",
+            "AutomationsCreateDNSDescription": "Create a VM which runs the DNS server docker image on the project dns network (10.10.10.10). Optionally assign a public IP.",
+            "AutomationsCreateDNSName": "VM name",
+            "AutomationsCreateDNSSize": "Size",
+            "AutomationsCreateDNSImage": "VM image",
+            "AutomationsCreateDNSTar": "Docker image tar download URL",
+            "AutomationsCreateDNSDockerImage": "Docker image name:tag inside the tar",
+            "AutomationsCreateDNSPass": "VM admin password (user kdadmin)",
+            "AutomationsCreateDNSSize1": "1 CPU, 1 GB RAM, 30 GB disk",
+            "AutomationsCreateDNSSize2": "1 CPU, 2 GB RAM, 60 GB disk",
+            "AutomationsCreateDNSSize3": "2 CPU, 4 GB RAM, 120 GB disk",
+            "AutomationsCreateDNSLabel": "Create",
+            "FieldValidationErrorGeneric": "Validation error",
+            "AutomationsCreateDNSAssignIP": "Assign a public IP?",
+            "AutomationsCreateDNSYes": "Yes",
+            "AutomationsCreateDNSNo": "No"
+        },
+        "hi": {
+            "AutomationsCreateDNSTitle": "Create DNS server",
+            "AutomationsCreateDNSDescription": "Create a VM which runs the DNS server docker image on the project dns network (10.10.10.10). Optionally assign a public IP.",
+            "AutomationsCreateDNSName": "VM name",
+            "AutomationsCreateDNSSize": "Size",
+            "AutomationsCreateDNSImage": "VM image",
+            "AutomationsCreateDNSTar": "Docker image tar download URL",
+            "AutomationsCreateDNSDockerImage": "Docker image name:tag inside the tar",
+            "AutomationsCreateDNSPass": "VM admin password (user kdadmin)",
+            "AutomationsCreateDNSSize1": "1 CPU, 1 GB RAM, 30 GB disk",
+            "AutomationsCreateDNSSize2": "1 CPU, 2 GB RAM, 60 GB disk",
+            "AutomationsCreateDNSSize3": "2 CPU, 4 GB RAM, 120 GB disk",
+            "AutomationsCreateDNSLabel": "Create",
+            "FieldValidationErrorGeneric": "Validation error",
+            "AutomationsCreateDNSAssignIP": "Assign a public IP?",
+            "AutomationsCreateDNSYes": "Yes",
+            "AutomationsCreateDNSNo": "No"
+        },
+        "ja": {
+            "AutomationsCreateDNSTitle": "Create DNS server",
+            "AutomationsCreateDNSDescription": "Create a VM which runs the DNS server docker image on the project dns network (10.10.10.10). Optionally assign a public IP.",
+            "AutomationsCreateDNSName": "VM name",
+            "AutomationsCreateDNSSize": "Size",
+            "AutomationsCreateDNSImage": "VM image",
+            "AutomationsCreateDNSTar": "Docker image tar download URL",
+            "AutomationsCreateDNSDockerImage": "Docker image name:tag inside the tar",
+            "AutomationsCreateDNSPass": "VM admin password (user kdadmin)",
+            "AutomationsCreateDNSSize1": "1 CPU, 1 GB RAM, 30 GB disk",
+            "AutomationsCreateDNSSize2": "1 CPU, 2 GB RAM, 60 GB disk",
+            "AutomationsCreateDNSSize3": "2 CPU, 4 GB RAM, 120 GB disk",
+            "AutomationsCreateDNSLabel": "Create",
+            "FieldValidationErrorGeneric": "Validation error",
+            "AutomationsCreateDNSAssignIP": "Assign a public IP?",
+            "AutomationsCreateDNSYes": "Yes",
+            "AutomationsCreateDNSNo": "No"
+        },
+        "zh": {
+            "AutomationsCreateDNSTitle": "Create DNS server",
+            "AutomationsCreateDNSDescription": "Create a VM which runs the DNS server docker image on the project dns network (10.10.10.10). Optionally assign a public IP.",
+            "AutomationsCreateDNSName": "VM name",
+            "AutomationsCreateDNSSize": "Size",
+            "AutomationsCreateDNSImage": "VM image",
+            "AutomationsCreateDNSTar": "Docker image tar download URL",
+            "AutomationsCreateDNSDockerImage": "Docker image name:tag inside the tar",
+            "AutomationsCreateDNSPass": "VM admin password (user kdadmin)",
+            "AutomationsCreateDNSSize1": "1 CPU, 1 GB RAM, 30 GB disk",
+            "AutomationsCreateDNSSize2": "1 CPU, 2 GB RAM, 60 GB disk",
+            "AutomationsCreateDNSSize3": "2 CPU, 4 GB RAM, 120 GB disk",
+            "AutomationsCreateDNSLabel": "Create",
+            "FieldValidationErrorGeneric": "Validation error",
+            "AutomationsCreateDNSAssignIP": "Assign a public IP?",
+            "AutomationsCreateDNSYes": "Yes",
+            "AutomationsCreateDNSNo": "No"
+        }
+    },
+    "form": {
+        "description": "{{{i18n.AutomationsCreateDNSDescription}}}",
+        "required_label": "{{{i18n.Required}}}",
+        "required_fields": [
+            {
+                "id": "automation_name",
+                "type": "hidden",
+                "value": "createdns"
+            },
+            {
+                "id": "name",
+                "type": "text",
+                "placeholder": "{{{i18n.AutomationsCreateDNSName}}}",
+                "required": true,
+                "pattern": "\\s*[A-Za-z0-9]+\\s*",
+                "validation_error": "{{{i18n.FieldValidationErrorGeneric}}}"
+            },
+            {
+                "id": "size",
+                "multioption": true,
+                "type": "select",
+                "label": "{{{i18n.AutomationsCreateDNSSize}}}",
+                "options": [
+                    {
+                        "value": "1:1024:30",
+                        "label": "{{{i18n.AutomationsCreateDNSSize1}}}"
+                    },
+                    {
+                        "value": "1:2048:60",
+                        "label": "{{{i18n.AutomationsCreateDNSSize2}}}"
+                    },
+                    {
+                        "value": "2:4096:120",
+                        "label": "{{{i18n.AutomationsCreateDNSSize3}}}"
+                    }
+                ]
+            },
+            {
+                "id": "tarurl",
+                "type": "text",
+                "placeholder": "{{{i18n.AutomationsCreateDNSTar}}}",
+                "required": true,
+                "pattern": "^https?://[^\\s'\"$`\\\\%]+$",
+                "validation_error": "{{{i18n.FieldValidationErrorGeneric}}}"
+            },
+            {
+                "id": "dockerimage",
+                "type": "text",
+                "placeholder": "{{{i18n.AutomationsCreateDNSDockerImage}}}",
+                "required": true,
+                "pattern": "^[^\\s'\"$`\\\\%]+$",
+                "validation_error": "{{{i18n.FieldValidationErrorGeneric}}}"
+            },
+            {
+                "id": "adminpass",
+                "type": "password",
+                "placeholder": "{{{i18n.AutomationsCreateDNSPass}}}",
+                "required": true,
+                "pattern": "^[^\\s'\"$`\\\\%]+$",
+                "validation_error": "{{{i18n.FieldValidationErrorGeneric}}}"
+            },
+            {
+                "id": "assignpublicip",
+                "multioption": true,
+                "type": "select",
+                "label": "{{{i18n.AutomationsCreateDNSAssignIP}}}",
+                "options": [
+                    {
+                        "value": "true",
+                        "label": "{{{i18n.AutomationsCreateDNSYes}}}"
+                    },
+                    {
+                        "value": "false",
+                        "label": "{{{i18n.AutomationsCreateDNSNo}}}"
+                    }
+                ]
+            },
+            {
+                "id": "image",
+                "multioption": true,
+                "type": "select",
+                "label": "{{{i18n.AutomationsCreateDNSImage}}}",
+                "options": []
+            }
+        ],
+        "load_javascript": [
+            "const { cmdmanager } = await import(`${APP_CONSTANTS.LIB_PATH}/cmdmanager.mjs`);",
+            "const form = arguments[0]||{};",
+            "const imageField = form.required_fields[form.required_fields.length-1];",
+            "const imgResult = await cmdmanager.kdcmd('listVMImages', [], {}, undefined, true);",
+            "if (imgResult.result) for (const img of imgResult.resources.concat(imgResult.orgResources||[])) imageField.options.push({value: img.name, label: img.description});",
+            "return form;"
+        ],
+        "submitlabel": "{{{i18n.AutomationsCreateDNSLabel}}}"
+    }
+}
