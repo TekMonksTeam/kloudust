@@ -1,0 +1,5 @@
+{
+  "id":"deletednsserver", "command":"deleteVM", "type":"kloudust_cmdline", "kloudust_cmdline_params":["vm_name"], "title":"Delete DNS Server",
+  "i18n":{"en":{"Description":"Delete this DNS server and its virtual machine disk.","Name":"DNS server name","Delete":"Delete"},"hi":{"Description":"Delete this DNS server and its virtual machine disk.","Name":"DNS server name","Delete":"Delete"},"ja":{"Description":"Delete this DNS server and its virtual machine disk.","Name":"DNS server name","Delete":"Delete"},"zh":{"Description":"Delete this DNS server and its virtual machine disk.","Name":"DNS server name","Delete":"Delete"}},
+  "form":{"description":"{{{i18n.Description}}}","required_fields":[{"id":"vm_name","type":"text","placeholder":"{{{i18n.Name}}}","required":true,"value":"{{{APP_CONSTANTS.ENV._dnsservers_form_data.name_raw}}}","readonly":"true"}],"submitlabel":"{{{i18n.Delete}}}"}
+}

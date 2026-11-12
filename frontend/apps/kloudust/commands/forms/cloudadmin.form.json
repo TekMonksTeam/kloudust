@@ -10,7 +10,8 @@
     {"id": "addimage", "label": "{{{i18n.AddImage}}}", "logo": "img/addimage.svg"},
     {"id": "deleteimage", "label": "{{{i18n.DeleteImage}}}", "logo": "img/deleteimage.svg"},
     {"id": "livemigrate", "label": "{{{i18n.LiveMigrate}}}", "logo": "img/migratevm.svg"},
-    {"id": "customcmd", "label": "{{{i18n.CustomCmd}}}", "logo": "img/customcmd.svg"}
+    {"id": "customcmd", "label": "{{{i18n.CustomCmd}}}", "logo": "img/customcmd.svg"},
+    {"id": "editdnsrecords", "label": "{{{i18n.EditDNSRecords}}}", "logo": "img/manage.svg"}
 ],
 "orgadmin": [
     {"id": "addimage", "label": "{{{i18n.AddImage}}}", "logo": "img/addimage.svg"},
@@ -25,7 +26,8 @@
     "AddImage": "Add image",
     "DeleteImage": "Delete image",
     "LiveMigrate": "Live migrate",
-    "CustomCmd": "Admin command"
+    "CustomCmd": "Admin command",
+    "EditDNSRecords": "Edit DNS records"
 },
 
 "hi": {
@@ -34,7 +36,8 @@
     "AddImage": "Add image",
     "DeleteImage": "Delete image",
     "LiveMigrate": "Live migrate",
-    "CustomCmd": "Admin command"
+    "CustomCmd": "Admin command",
+    "EditDNSRecords": "Edit DNS records"
 },
 
 "ja": {
@@ -43,7 +46,8 @@
     "AddImage": "Add image",
     "DeleteImage": "Delete image",
     "LiveMigrate": "Live migrate",
-    "CustomCmd": "Admin command"
+    "CustomCmd": "Admin command",
+    "EditDNSRecords": "Edit DNS records"
 },
 
 "zh": {
@@ -52,7 +56,8 @@
     "AddImage": "Add image",
     "DeleteImage": "Delete image",
     "LiveMigrate": "Live migrate",
-    "CustomCmd": "Admin command"
+    "CustomCmd": "Admin command",
+    "EditDNSRecords": "Edit DNS records"
 }
 }
 }

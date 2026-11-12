@@ -25,7 +25,7 @@
             {
                 "id": "automations_createdns",
                 "label": "{{{i18n.AutomationsCreateDNS}}}",
-                "logo": "img/automations_createdns.svg",
+                "logo": "img/dns.svg",
                 "name": "Create DNS"
             }
         ]

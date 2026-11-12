@@ -1,0 +1,23 @@
+{
+  "id": "dnsservers", "command": "tablelist", "type": "table_display",
+  "i18n": {"en": {"DNS_name_raw": "Name", "DNS_description": "Description", "DNS_ips": "Public IP", "DNS_privateips": "Private IP", "DNS_datetime": "Date created", "DNSDelete": "Delete"}, "hi": {"DNS_name_raw": "Name", "DNS_description": "Description", "DNS_ips": "Public IP", "DNS_privateips": "Private IP", "DNS_datetime": "Date created", "DNSDelete": "Delete"}, "ja": {"DNS_name_raw": "Name", "DNS_description": "Description", "DNS_ips": "Public IP", "DNS_privateips": "Private IP", "DNS_datetime": "Date created", "DNSDelete": "Delete"}, "zh": {"DNS_name_raw": "Name", "DNS_description": "Description", "DNS_ips": "Public IP", "DNS_privateips": "Private IP", "DNS_datetime": "Date created", "DNSDelete": "Delete"}},
+  "tabledef": {
+    "popupform": {"rolelist": {"*": [{"id": "deletednsserver", "label": "{{{i18n.DNSDelete}}}", "logo": "img/deletevm.svg"}]}},
+    "style": "div#tablebottombar{display:none;}", "i18nPrefix": "DNS", "enable_copy": true,
+    "onclickrow_html": [
+      "<style>div#onclick_html {background-color:#F8F8F8;width:auto;} div#close{display:none!important}</style>",
+      "<style>div#onclickrow_html {height:fit-content;} div#body{background-color:#F8F8F8!important}</style>",
+      "<style>div#buttons {margin:0!important;align-items:flex-start!important;height:100%!important}</style>",
+      "<style>div#button {height:unset!important;max-height:100%!important;margin:0!important;color:#BC5205!important;width:6em!important;font-size:.8em!important;box-sizing:border-box!important;border:1px solid transparent;border-radius:.5em;padding:.5em}</style>",
+      "<style>div#button img {width:3em!important;height:3em!important} div#button span {font-size:smaller!important;height:-webkit-fill-available} div#button:hover {border:1px dashed #BC5205!important}</style>"
+    ],
+    "clickrow_javascript": ["APP_CONSTANTS.ENV._dnsservers_form_data = arguments[0];"],
+    "load_javascript": [
+      "const {cmdmanager} = await import(`${APP_CONSTANTS.LIB_PATH}/cmdmanager.mjs`), project = $$.libsession.get(APP_CONSTANTS.ACTIVE_PROJECT);",
+      "const response = await cmdmanager.kdcmd('listVMsForOrgOrProject', ['org','project','types'], {org: $$.libsession.get(APP_CONSTANTS.USERORG), project, types: APP_CONSTANTS.VM_TYPE_DNS}, project, true);",
+      "for (const vm of response.vms||[]) { vm.datetime = new Date(vm.timestamp).toLocaleDateString(); vm.ips = vm.ips.trim() || 'Not assigned'; vm.privateips = (vm.private_ips||[]).join(',') || 'Not assigned'; }",
+      "const icons = await import(`${APP_CONSTANTS.FORM_MODULES_PATH}/iconlist.mjs`), tabledef = arguments[0]; tabledef.onclickrow_html.push(await icons.iconlist.getHTML(tabledef.popupform, monkshu_env.apps[APP_CONSTANTS.APP_NAME].cmdmanager));",
+      "return {keys:['name_raw','description','ips','privateips','datetime'], table:response.vms||[]};"
+    ]
+  }
+}

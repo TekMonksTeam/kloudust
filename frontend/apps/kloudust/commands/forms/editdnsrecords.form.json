@@ -1,0 +1,28 @@
+{
+  "id": "editdnsrecords", "command": "editDnsRecords", "type": "kloudust_cmdline",
+  "kloudust_cmdline_params": ["dns_server", "operation", "records"],
+  "title": "{{{i18n.Title}}}",
+  "i18n": {"en": {"Title": "Edit DNS Records", "Description": "Select a DNS server and add or remove its DNS records.", "Save": "Save records"}, "hi": {"Title": "Edit DNS Records", "Description": "Select a DNS server and add or remove its DNS records.", "Save": "Save records"}, "ja": {"Title": "Edit DNS Records", "Description": "Select a DNS server and add or remove its DNS records.", "Save": "Save records"}, "zh": {"Title": "Edit DNS Records", "Description": "Select a DNS server and add or remove its DNS records.", "Save": "Save records"}},
+  "form": {
+    "description": "{{{i18n.Description}}}",
+    "required_fields": [
+      {"id": "dns_server", "type": "hidden", "value": ""},
+      {"id": "operation", "type": "hidden", "value": "sync"},
+      {"id": "records", "type": "hidden", "value": "[]"},
+      {"id": "dnsRecordsComponent", "inputtype": "dns-records", "style": "body{background-color:#4C4C4C;color:#DCDCDC} select option{background-color:#4C4C4C;color:#DCDCDC}"}
+    ],
+    "load_javascript": [
+      "const {cmdmanager} = await import(`${APP_CONSTANTS.LIB_PATH}/cmdmanager.mjs`);",
+      "const form = arguments[0] || {}, project = $$.libsession.get(APP_CONSTANTS.ACTIVE_PROJECT);",
+      "const dns = await cmdmanager.kdcmd('listVMsForOrgOrProject', ['org','project','types'], {org: $$.libsession.get(APP_CONSTANTS.USERORG), project, types: APP_CONSTANTS.VM_TYPE_DNS}, project, true);",
+      "form.required_fields[3].value = JSON.stringify({dnsServers: (dns.vms||[]).map(vm => ({value: vm.name_raw, label: vm.name_raw}))});",
+      "return form;"
+    ],
+    "submit_javascript": [
+      "const output = arguments[0] || {}, root = arguments[1]._form_shadowroot;",
+      "const value = root.querySelector('dns-records').value;",
+      "if (!value.dns_server) return false; output.dns_server = value.dns_server; output.operation = 'sync'; output.records = JSON.stringify(JSON.stringify(value.records)); return true;"
+    ],
+    "submitlabel": "{{{i18n.Save}}}"
+  }
+}

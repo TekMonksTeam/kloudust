@@ -37,7 +37,7 @@ async function exec(params, kdcmd) {
         `password: ${adminpass}, chpasswd: {expire: false}, hostname: ${name}, fqdn: ${name}, ssh_pwauth: true, `+ 
         `package_upgrade: true, packages: [net-tools, qemu-guest-agent, curl, docker.io], runcmd: [${runcmds}]}`;
 
-    const created = (await kdcmd(`createVM "${name}" "DNS server" "${cores}" "${memory}" "${disk}" "${DNS_VNET}" "${image}" "${cloudinit}" "false" "" "" "" "vm" "false" "" ""`)).result;
+    const created = (await kdcmd(`createVM "${name}" "DNS server" "${cores}" "${memory}" "${disk}" "${DNS_VNET}" "${image}" "${cloudinit}" "false" "" "" "" "dns" "false" "" ""`)).result;
     if (!created) return false;
 
     const isVMReady = await _waitForVMReady(name, kdcmd);
