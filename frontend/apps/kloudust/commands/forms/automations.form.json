@@ -21,6 +21,18 @@
                 "label": "{{{i18n.AutomationsCreateTeams}}}",
                 "logo": "img/automations_createteams.svg",
                 "name": "Create Teams"
+            },
+            {
+                "id": "automations_createdns",
+                "label": "{{{i18n.AutomationsCreateDNS}}}",
+                "logo": "img/adddns.svg",
+                "name": "Create DNS"
+            },
+            {
+                "id": "automations_deletedns",
+                "label": "{{{i18n.AutomationsDeleteDNS}}}",
+                "logo": "img/deletedns.svg",
+                "name": "Delete DNS"
             }
         ]
     },
@@ -28,22 +40,30 @@
         "en": {
             "AutomationsUpload": "New Automation",
             "AutomationsDelete": "Delete Automation",
-            "AutomationsCreateTeams": "Create teams"
+            "AutomationsCreateTeams": "Create teams",
+            "AutomationsCreateDNS": "Create DNS server",
+            "AutomationsDeleteDNS": "Delete DNS server"
         },
         "hi": {
             "AutomationsUpload": "New Automation",
             "AutomationsDelete": "Delete Automation",
-            "AutomationsCreateTeams": "Create teams"
+            "AutomationsCreateTeams": "Create teams",
+            "AutomationsCreateDNS": "Create DNS server",
+            "AutomationsDeleteDNS": "Delete DNS server"
         },
         "ja": {
             "AutomationsUpload": "New Automation",
             "AutomationsDelete": "Delete Automation",
-            "AutomationsCreateTeams": "Create teams"
+            "AutomationsCreateTeams": "Create teams",
+            "AutomationsCreateDNS": "Create DNS server",
+            "AutomationsDeleteDNS": "Delete DNS server"
         },
         "zh": {
             "AutomationsUpload": "New Automation",
             "AutomationsDelete": "Delete Automation",
-            "AutomationsCreateTeams": "Create teams"
+            "AutomationsCreateTeams": "Create teams",
+            "AutomationsCreateDNS": "Create DNS server",
+            "AutomationsDeleteDNS": "Delete DNS server"
         }
     }
 }

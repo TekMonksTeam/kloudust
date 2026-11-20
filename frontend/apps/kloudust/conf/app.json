@@ -7,7 +7,7 @@
     "MOBILE_MEDIA_QUERY_PORTRAIT_START": "<style>@media only screen and (max-width: 959px) and (orientation: portrait) {",
     "MOBILE_MEDIA_QUERY_PORTRAIT_END": "}</style>",
     "COMPONENTS": ["components/dialog-box", "components/span-with-menu", 
-        "components/form-runner", "components/table-list", "components/firewall-rules", "components/vnet-ip", "components/loadbalancer-conf" ],
+        "components/form-runner", "components/table-list", "components/firewall-rules", "components/vnet-ip", "components/loadbalancer-conf", "components/dns-records" ],
     "APP_ABOUT_URL": "https://tekmonks.com/",
     "TKMLOGINAPP_URL": "https://login.tekmonks.com",
     "TKMLOGINAPP_DISABLE_MFA_KEY": "dma",
@@ -16,6 +16,6 @@
     "MONKVISION_FRONTEND_URL": "https://monkvision.tekmonks.com",
     
     "INSECURE_DEVELOPMENT_MODE": true,
-    "VM_TYPE_VM": "vm",
+    "VM_TYPE_VM": "vm", "VM_TYPE_DNS": "dns",
     "VM_TYPES_SERVICES": ["windowsvdi", "oracledbaas", "mariadbaas"]
 }

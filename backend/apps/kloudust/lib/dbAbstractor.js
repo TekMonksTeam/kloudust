@@ -18,7 +18,19 @@ const dbschema = jsonxparser.parseFileSync(`${KLOUD_CONSTANTS.DBDIR}/kd_dbschema
 const KLOUDUST_MAIN_DBFILE = KLOUD_CONSTANTS.CONF.DB_CONNECT_INFO || path.resolve(`${KLOUD_CONSTANTS.ROOTDIR}/db/kloudust.db`);
 
 /** Inits the module */
-exports.initAsync = async function() { KLOUD_CONSTANTS.env.db = await _initMonkshuGlobalAndGetDBModuleAsync(); }
+exports.initAsync = async function() { 
+    KLOUD_CONSTANTS.env.db = await _initMonkshuGlobalAndGetDBModuleAsync(); 
+    for (const ddl of ORGDATA_MIGRATIONS) await _db().runCmd(ddl);  // idempotent, DBs older than orgdata need them
+}
+
+// orgdata is newer than some DBs, so the table must exist before the trigger which deletes from it, 
+// else deleting any VM fails. The trigger removes the DNS server key when its VM is deleted.
+const ORGDATA_MIGRATIONS = [
+    `CREATE TABLE IF NOT EXISTS orgdata(org varchar not null, data varchar not null, type varchar not null, 
+        timestamp integer default (cast(strftime('%s','now') || substr(strftime('%f','now'),4) as integer)))`,
+    `CREATE TRIGGER IF NOT EXISTS dnsserverkey_vm_cleanup AFTER DELETE ON vms BEGIN
+        DELETE FROM orgdata WHERE type = 'dnsserverkey' AND data ->> '$.vmid' = OLD.id;
+    END`];
 
 /** 
  * @return The total number of users in the cloud database 
@@ -141,6 +153,34 @@ exports.addOrgData = async (org, data, type) => {
 
     const query = "insert into orgdata(org, data, type) values (?,?,?)";
     return await _db().runCmd(query, [org, data, type]);
+}
+
+/**
+ * Returns all org data entries of the given type, parsed from their JSON.
+ * @param {string} org org name
+ * @param {string} type data type - eg: dnsserverkey
+ * @returns Array of the parsed data objects, or false on error
+ */
+exports.getOrgData = async (org, type) => {
+    if (!roleman.checkAccess(roleman.ACTIONS.lookup_org_data)) {_logUnauthorized(); return false; }
+
+    const rows = await _db().getQuery("select data from orgdata where org=? and type=?", [org, type]);
+    return rows ? rows.map(row => JSON.parse(row.data)) : false;
+}
+
+/**
+ * Replaces the org data entry of the given type and VM ID (data.vmid), or adds it if missing.
+ * @param {string} org org name
+ * @param {string} type data type - eg: dnsserverkey
+ * @param {string} vmid The VM ID the entry belongs to
+ * @param {string} data The new data as JSON string, must contain the same vmid
+ * @returns true on success or false otherwise
+ */
+exports.upsertOrgDataByVMID = async (org, type, vmid, data) => {
+    if (!roleman.checkAccess(roleman.ACTIONS.edit_org_data)) {_logUnauthorized(); return false; }
+
+    if (!await _db().runCmd("delete from orgdata where org=? and type=? and data ->> '$.vmid'=?", [org, type, vmid])) return false;
+    return await _db().runCmd("insert into orgdata(org, data, type) values (?,?,?)", [org, data, type]);
 }
 
 /**

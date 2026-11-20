@@ -133,3 +133,4 @@ exports.unresolveVMName = vm_name => vm_name ? vm_name.substring(0, vm_name.toLo
 
 exports.DEFAULT_DISK = "__org_kloudust_default_disk_name";
 exports.VM_TYPE_VM = "vm";
+exports.VM_TYPE_DNS = "dns";

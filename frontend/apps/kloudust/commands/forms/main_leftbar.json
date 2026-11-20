@@ -3,11 +3,13 @@
 "cloudadmin": [
     {"id": "cloudadmin", "label": "{{{i18n.CloudAdmin}}}", "logo": "img/cloudadmin.svg"},
     {"id": "automations", "label": "{{{i18n.Automations}}}", "logo": "img/automations.svg"},
-    {"id": "monitoring", "label": "{{{i18n.Monitoring}}}", "logo": "img/monitoring.svg"}
+    {"id": "monitoring", "label": "{{{i18n.Monitoring}}}", "logo": "img/monitoring.svg"},
+    {"id": "dnsservers", "label": "{{{i18n.DNSServers}}}", "logo": "img/dns.svg"}
 ],
 "orgadmin": [
     {"id": "cloudadmin", "label": "{{{i18n.CloudAdmin}}}", "logo": "img/cloudadmin.svg"},
-    {"id": "automations", "label": "{{{i18n.Automations}}}", "logo": "img/automations.svg"}
+    {"id": "automations", "label": "{{{i18n.Automations}}}", "logo": "img/automations.svg"},
+    {"id": "dnsservers", "label": "{{{i18n.DNSServers}}}", "logo": "img/dns.svg"}
 ],
 "*":[
     {"id": "create", "label": "{{{i18n.Create}}}", "logo": "img/plus.svg"},
@@ -32,6 +34,7 @@
     "Automations": "Automations",
     "Monitoring": "Monitoring",
     "VirtualMachines": "Virtual machines",
+    "DNSServers": "DNS servers",
     "Routers" : "Routers",
     "LoadBalancers": "Load Balancers",
     "VirtualNetworks": "Virtual networks",
@@ -53,6 +56,7 @@
     "Automations": "Automations",
     "Monitoring": "Monitoring",
     "VirtualMachines": "Virtual machines",
+    "DNSServers": "DNS servers",
     "Routers" : "Routers",
     "LoadBalancers": "Load Balancers",
     "VirtualNetworks": "Virtual networks",
@@ -70,6 +74,7 @@
     "Automations": "Automations",
     "Monitoring": "Monitoring",
     "VirtualMachines": "Virtual machines",
+    "DNSServers": "DNS servers",
     "Routers" : "Routers",
     "LoadBalancers": "Load Balancers",
     "VirtualNetworks": "Virtual networks",
@@ -87,6 +92,7 @@
     "Automations": "Automations",
     "Monitoring": "Monitoring",
     "VirtualMachines": "Virtual machines",
+    "DNSServers": "DNS servers",
     "Routers" : "Routers",
     "LoadBalancers": "Load Balancers",
     "VirtualNetworks": "Virtual networks",

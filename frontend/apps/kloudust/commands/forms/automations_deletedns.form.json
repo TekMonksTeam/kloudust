@@ -1,0 +1,65 @@
+{
+    "id": "automations_deletedns",
+    "command": "automations_deletedns",
+    "type": "automation_cmdline",
+    "kloudust_cmdline_params": ["vm_name"],
+    "title": "{{{i18n.AutomationsDeleteDNSTitle}}}",
+    "i18n": {
+        "en": {
+            "AutomationsDeleteDNSTitle": "Delete DNS server",
+            "AutomationsDeleteDNSDescription": "Delete a DNS server, reverse its DNS network setup on connected project VMs, and remove its virtual network.",
+            "AutomationsDeleteDNSSelect": "DNS server",
+            "AutomationsDeleteDNSLabel": "Delete",
+            "AutomationsDeleteDNSNone": "No DNS servers found",
+            "FieldValidationErrorGeneric": "Validation error"
+        },
+        "hi": {
+            "AutomationsDeleteDNSTitle": "Delete DNS server",
+            "AutomationsDeleteDNSDescription": "Delete a DNS server, reverse its DNS network setup on connected project VMs, and remove its virtual network.",
+            "AutomationsDeleteDNSSelect": "DNS server",
+            "AutomationsDeleteDNSLabel": "Delete",
+            "AutomationsDeleteDNSNone": "No DNS servers found",
+            "FieldValidationErrorGeneric": "Validation error"
+        },
+        "ja": {
+            "AutomationsDeleteDNSTitle": "Delete DNS server",
+            "AutomationsDeleteDNSDescription": "Delete a DNS server, reverse its DNS network setup on connected project VMs, and remove its virtual network.",
+            "AutomationsDeleteDNSSelect": "DNS server",
+            "AutomationsDeleteDNSLabel": "Delete",
+            "AutomationsDeleteDNSNone": "No DNS servers found",
+            "FieldValidationErrorGeneric": "Validation error"
+        },
+        "zh": {
+            "AutomationsDeleteDNSTitle": "Delete DNS server",
+            "AutomationsDeleteDNSDescription": "Delete a DNS server, reverse its DNS network setup on connected project VMs, and remove its virtual network.",
+            "AutomationsDeleteDNSSelect": "DNS server",
+            "AutomationsDeleteDNSLabel": "Delete",
+            "AutomationsDeleteDNSNone": "No DNS servers found",
+            "FieldValidationErrorGeneric": "Validation error"
+        }
+    },
+    "form": {
+        "description": "{{{i18n.AutomationsDeleteDNSDescription}}}",
+        "required_label": "{{{i18n.Required}}}",
+        "required_fields": [
+            {
+                "id": "vm_name",
+                "multioption": true,
+                "type": "select",
+                "label": "{{{i18n.AutomationsDeleteDNSSelect}}}",
+                "required": true,
+                "options": []
+            }
+        ],
+        "load_javascript": [
+            "const { cmdmanager } = await import(`${APP_CONSTANTS.LIB_PATH}/cmdmanager.mjs`);",
+            "const form = arguments[0] || {}, project = $$.libsession.get(APP_CONSTANTS.ACTIVE_PROJECT);",
+            "const result = await cmdmanager.kdcmd('listVMsForOrgOrProject', ['org', 'project', 'types'], {org: $$.libsession.get(APP_CONSTANTS.USERORG), project, types: APP_CONSTANTS.VM_TYPE_DNS}, project, true);",
+            "const dnsSelect = form.required_fields[0];",
+            "if (result.result && result.vms?.length) for (const vm of result.vms) dnsSelect.options.push({value: vm.name_raw, label: vm.name_raw});",
+            "else { dnsSelect.options.push({value: '', label: 'No DNS servers found'}); dnsSelect.disabled = true; }",
+            "return form;"
+        ],
+        "submitlabel": "{{{i18n.AutomationsDeleteDNSLabel}}}"
+    }
+}
